@@ -1,6 +1,6 @@
 # Created on Thu Aug  7 13:40:48 2025
 
-#@author: Francoise
+#@author: Francoise P
 import plot_raw
 import glob 
 for csv in glob.glob('dataset/*.csv'):
