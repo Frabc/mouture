@@ -1,16 +1,18 @@
-import numpy as np
+import numpy as np 
+#import numpy package & give an short alias international convention
 
-import glob
-csv = glob.glob("dataset/vid13*.csv")[0]
+import glob # import glob package
+csv = glob.glob("dataset/vid16*.csv")[0]
+# define csv as first doc in data set which name start with videoXX
 
 import pandas as pd
+#import panda package give an alias pd (international convention)
 df = pd.read_csv(csv,sep=';')
-
-from dataclasses import dataclass
-
-@dataclass
+# data frame (collection par colonne) to read csv with ; separator
+# 
 class P(): #Assuming 3D point
-    x:float;y:float;z:float;
+    def __init__(self,x:float,y:float,z:float):
+        self.x = x ; self.y = y ; self.z = z
     def __sub__(A,B): return P(A.x-B.x,A.y-B.y,A.z-B.z)
     def __add__(A,B): return P(A.x+B.x,A.y+B.y,A.z+B.z)
     def scale(A,k:float): return P(k*A.x,k*A.y,k*A.z)
@@ -50,7 +52,7 @@ for name in ["Tc1","Tc2","Tc3","Ttip"]:
     cols[f"{name}.y"]=[]
     cols[f"{name}.z"]=[]
 cols["cast"]=[]
-threshold = -95.5
+threshold = -89.9
 for index,row in df.iterrows():
     # Inputs
     c1  = P(row["corner1_x"],row["corner1_y"],row["corner1_z"])
